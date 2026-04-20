@@ -39,7 +39,7 @@ def build_workflow(prompt, seed=None, width=1024, height=1024, steps=30, cfg=1.0
     }
 
 
-def generate_image(prompt, seed=None, width=1024, height=1024, verbose=False):
+def generate_image(prompt, seed=None, width=768, height=1024, verbose=False):
     """生成图片并返回本地路径"""
     server = DEFAULT_SERVER
     
