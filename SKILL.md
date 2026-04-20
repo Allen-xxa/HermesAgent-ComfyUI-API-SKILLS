@@ -138,3 +138,11 @@ tags:
 - width: 768, height: 1024（竖版比例）
 - steps: 9, cfg: 0.0（Turbo模型不需要CFG）
 - sampler: dpmpp_2m, scheduler: simple
+
+## Z-Image-Turbo 技术说明
+
+Z-Image-Turbo 是基于 DMD (Distribution Matching Distillation) 的蒸馏模型：
+- **CFG 必须设为 0** - 蒸馏过程已经内置了 CFG Augmentation 效果
+- **steps 推荐 8-9** - 官方称 "9 steps results in 8 DiT forwards"
+- 使用 dpmpp_2m + simple 组合效果稳定
+- 参考: https://huggingface.co/Tongyi-MAI/Z-Image-Turbo
