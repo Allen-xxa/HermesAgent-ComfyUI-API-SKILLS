@@ -19,8 +19,8 @@ DEFAULT_CLIP = "qwen3_4B_FP8.safetensors"
 DEFAULT_VAE = "ae.safetensors"
 DEFAULT_WIDTH = 768
 DEFAULT_HEIGHT = 1024
-DEFAULT_STEPS = 30
-DEFAULT_CFG = 1.0
+DEFAULT_STEPS = 9
+DEFAULT_CFG = 0.0
 
 
 def build_workflow(prompt, seed=None, width=1024, height=1024, steps=30, cfg=1.0, filename_prefix="Hermes_Gen"):
@@ -33,7 +33,7 @@ def build_workflow(prompt, seed=None, width=1024, height=1024, steps=30, cfg=1.0
         "3": {"class_type": "VAELoader", "inputs": {"vae_name": DEFAULT_VAE}},
         "4": {"class_type": "CLIPTextEncodeLumina2", "inputs": {"system_prompt": "superior", "user_prompt": prompt, "clip": ["2", 0]}},
         "5": {"class_type": "EmptyLatentImage", "inputs": {"width": width, "height": height, "batch_size": 1}},
-        "6": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "seed": seed, "steps": steps, "cfg": cfg, "sampler_name": "euler", "scheduler": "simple", "positive": ["4", 0], "negative": ["4", 0], "latent_image": ["5", 0], "denoise": 1.0}},
+        "6": {"class_type": "KSampler", "inputs": {"model": ["1", 0], "seed": seed, "steps": steps, "cfg": cfg, "sampler_name": "dpmpp_2m", "scheduler": "simple", "positive": ["4", 0], "negative": ["4", 0], "latent_image": ["5", 0], "denoise": 1.0}},
         "7": {"class_type": "VAEDecode", "inputs": {"samples": ["6", 0], "vae": ["3", 0]}},
         "8": {"class_type": "SaveImage", "inputs": {"images": ["7", 0], "filename_prefix": filename_prefix}}
     }

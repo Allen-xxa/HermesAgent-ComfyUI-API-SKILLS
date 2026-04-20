@@ -30,7 +30,7 @@
   "5": {
     "class_type": "EmptyLatentImage",
     "inputs": {
-      "width": 1024,
+      "width": 768,
       "height": 1024,
       "batch_size": 1
     }
@@ -40,9 +40,9 @@
     "inputs": {
       "model": ["1", 0],
       "seed": "{{SEED_PLACEHOLDER}}",
-      "steps": 30,
-      "cfg": 1.0,
-      "sampler_name": "euler",
+"steps": 9,
+      "cfg": 0.0,
+      "sampler_name": "dpmpp_2m",
       "scheduler": "simple",
       "positive": ["4", 0],
       "negative": ["4", 0],

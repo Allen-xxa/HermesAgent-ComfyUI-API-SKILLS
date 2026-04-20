@@ -125,15 +125,16 @@ tags:
 
 下载图片到 `/opt/data/`，使用 `MEDIA:` 发送给用户。
 
-## Lumina2 注意事项
+## Lumina2 / Z-Image-Turbo 注意事项
 
 1. 使用 `CLIPTextEncodeLumina2` 而不是普通 `CLIPTextEncode`
 2. CLIPLoader 的 `type` 必须为 `lumina2`
-3. CFG 值建议 1.0（低值）
-4. positive/negative 使用相同值
+3. **CFG 必须设为 0.0**：Turbo 模型是基于 DMD (Distribution Matching Distillation) 的蒸馏模型，已经内置了 CFG 效果，不需要额外的 guidance_scale。官方文档明确指出 `guidance_scale=0.0`。
+4. steps=8 是官方推荐的 NFE 数值
+5. sampler 推荐 `euler` + `simple` scheduler
 
 ## 默认参数
 
 - width: 768, height: 1024（竖版比例）
-- steps: 30, cfg: 1.0
-- sampler: euler, scheduler: simple
+- steps: 9, cfg: 0.0（Turbo模型不需要CFG）
+- sampler: dpmpp_2m, scheduler: simple
